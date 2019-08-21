@@ -9,7 +9,7 @@ group = 'ru.eltex.project'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '12'
 
-mainClassName = 'ru.eltex.project.simpleappointer'
+mainClassName = 'ru.eltex.project.simpleappointer.SimpleappointerApplication'
 
 repositories {
 	mavenCentral()
