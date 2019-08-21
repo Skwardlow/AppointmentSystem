@@ -2,11 +2,14 @@ plugins {
 	id 'org.springframework.boot' version '2.1.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'application'
 }
 
 group = 'ru.eltex.project'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '12'
+
+mainClassName = 'ru.eltex.project.simpleappointer'
 
 repositories {
 	mavenCentral()
