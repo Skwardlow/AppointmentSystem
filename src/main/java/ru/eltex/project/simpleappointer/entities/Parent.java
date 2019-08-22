@@ -22,4 +22,7 @@ public abstract class Parent implements Serializable {
     private String phone;
     private String email;
 
+    private String login;
+    private String password;
+
 }
