@@ -25,7 +25,7 @@ public class SpecialistService extends AbstractService<Specialist, SpecialistRep
     }
 
     public List<Specialist> readAll(){
-        new Lists.newArrayList(repository.findAll());
+        return (List<Specialist>) repository.findAll();
     }
 
     public void update(Specialist specialist){
