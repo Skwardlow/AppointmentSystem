@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MyController {
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String indexShow(){
         return "index";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration() {
+        return "registration";
     }
 
 }
