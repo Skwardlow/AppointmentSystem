@@ -15,8 +15,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public abstract class Parent implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
 
     private String name;
     private String phone;
