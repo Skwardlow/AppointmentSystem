@@ -1,12 +1,16 @@
 package ru.eltex.project.simpleappointer.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.eltex.project.simpleappointer.dao.SpecialistRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Specialist;
 import ru.eltex.project.simpleappointer.entities.User;
-
+@Component
 public class RegUtil {
+    @Autowired
     public SpecialistRepository specialistRepository;
+    @Autowired
     public UserRepository userRepository;
 
     public byte regAddS(Specialist specialist){

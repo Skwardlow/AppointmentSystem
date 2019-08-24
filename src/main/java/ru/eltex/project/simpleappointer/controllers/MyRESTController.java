@@ -1,8 +1,10 @@
 package ru.eltex.project.simpleappointer.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.project.simpleappointer.entities.User;
+import ru.eltex.project.simpleappointer.services.UserService;
 import ru.eltex.project.simpleappointer.utils.RegUtil;
 
 import java.io.UnsupportedEncodingException;
@@ -12,6 +14,8 @@ import java.net.URLDecoder;
 
 public class MyRESTController {
     private static final Integer EXCLUDING_INDEX = 1;
+    @Autowired
+    RegUtil regUtil;
 
     @RequestMapping(value = "index/5",method = RequestMethod.GET, produces = MediaType.ALL_VALUE)
     @ResponseBody
@@ -28,7 +32,6 @@ public class MyRESTController {
             System.out.println(req[i]);
         }
         User user = new User(req[0] + " " + req[1] + " " + req[2], req[3] , req[3] , req[4] , req[5] );
-        RegUtil regUtil = new RegUtil();
         byte answer = regUtil.regAddU(user);
         return answer;
     }
