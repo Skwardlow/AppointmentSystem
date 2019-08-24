@@ -22,8 +22,18 @@ public class RegUtil {
         specialistRepository.save(specialist);
         return 0;
     }
-    public void regAddU(User user){
-
+    public byte regAddU(User user){
+        if (userRepository.existsByEmail(user.getEmail())){
+            return 1;
+        }
+        if (userRepository.existsByLogin(user.getLogin())){
+            return 2;
+        }
+        if (userRepository.existsByLoginAndEmail(user.getLogin(),user.getEmail())){
+            return 3;
+        }
+        userRepository.save(user);
+        return 0;
     }
 
 }
