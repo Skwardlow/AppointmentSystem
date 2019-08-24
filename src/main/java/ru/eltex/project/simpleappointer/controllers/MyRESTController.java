@@ -1,18 +1,35 @@
 package ru.eltex.project.simpleappointer.controllers;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.eltex.project.simpleappointer.entities.User;
+import ru.eltex.project.simpleappointer.utils.RegUtil;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 @RestController
 
 public class MyRESTController {
+    private static final Integer EXCLUDING_INDEX = 1;
 
     @RequestMapping(value = "index/5",method = RequestMethod.GET, produces = MediaType.ALL_VALUE)
     @ResponseBody
     public String welcome(){
         return "Hehey";
+    }
+
+    @RequestMapping(value = "/reg_user",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public Byte reg_user(@RequestBody String json) throws UnsupportedEncodingException {
+        String[] req = URLDecoder.decode(json, "UTF-8").split("&");
+        for(int i = 0; i < req.length; i++){
+            int index = req[i].indexOf('=');
+            req[i] = req[i].substring(index + EXCLUDING_INDEX);
+            System.out.println(req[i]);
+        }
+        User user = new User(req[0] + " " + req[1] + " " + req[2], req[3] , req[3] , req[4] , req[5] );
+        RegUtil regUtil = new RegUtil();
+        byte answer = regUtil.regAddU(user);
+        return answer;
     }
 }
