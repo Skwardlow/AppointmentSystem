@@ -18,11 +18,11 @@ public abstract class Parent implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
-    private String name;
-    private String phone;
-    private String email;
+    protected String name;
+    protected String phone;
+    protected String email;
 
-    private String login;
-    private String password;
+    protected String login;
+    protected String password;
 
 }

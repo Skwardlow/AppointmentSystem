@@ -3,6 +3,7 @@ package ru.eltex.project.simpleappointer.utils;
 import ru.eltex.project.simpleappointer.dao.SpecialistRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Specialist;
+import ru.eltex.project.simpleappointer.entities.User;
 
 public class RegUtil {
     public SpecialistRepository specialistRepository;
@@ -21,7 +22,7 @@ public class RegUtil {
         specialistRepository.save(specialist);
         return 0;
     }
-    public void regAddU(Specialist specialist){
+    public void regAddU(User user){
 
     }
 
