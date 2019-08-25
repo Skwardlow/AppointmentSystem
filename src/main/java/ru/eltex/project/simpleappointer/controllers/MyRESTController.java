@@ -46,7 +46,7 @@ public class MyRESTController {
         }
         // Проверка инвайта req[5];
         Specialist specialist = new Specialist( req[0] + " " + req[1] + " " + req[2], req[3] , req[3] , req[4] , req[6] );
-        byte answer = regUtil.regAddS(specialist);
+        byte answer = regUtil.regAddS(specialist, req[5]);
         return answer;
     }
 }
