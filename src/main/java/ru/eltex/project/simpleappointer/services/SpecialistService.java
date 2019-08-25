@@ -2,9 +2,7 @@ package ru.eltex.project.simpleappointer.services;
 
 import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.SpecialistRepository;
-import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Specialist;
-import ru.eltex.project.simpleappointer.entities.User;
 
 import java.util.List;
 

@@ -8,8 +8,6 @@ import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Specialist;
 import ru.eltex.project.simpleappointer.entities.User;
 
-import java.util.List;
-
 @Component
 public class RegUtil {
     @Autowired

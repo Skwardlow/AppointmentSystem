@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.project.simpleappointer.entities.User;
-import ru.eltex.project.simpleappointer.services.UserService;
 import ru.eltex.project.simpleappointer.utils.RegUtil;
 
 import java.io.UnsupportedEncodingException;
