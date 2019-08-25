@@ -8,6 +8,5 @@ public interface SpecialistRepository extends CommonRepository<Specialist> {
     boolean existsByEmail(String email);
     boolean existsByLogin(String login);
     boolean existsByLoginAndEmail(String login, String email);
-    boolean existsByInvite(String invite);
 
 }
