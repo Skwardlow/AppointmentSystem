@@ -49,12 +49,12 @@ $(function() {
                     alert("Вы успешно зарегестрировались, далее вы попадете на главную страницу");
                     document.location.replace("/");
                 }else if(msg == 1){
-                    $('#user-alert').show();
-                    $('#username').val('');
-                    checkValid();
-                }else if(msg == 2){
                     $('#email-alert').show();
                     $('#email').val('');
+                    checkValid();
+                }else if(msg == 2){
+                    $('#user-alert').show();
+                    $('#username').val('');
                     checkValid();
                 }else if(msg == 3){
                     $('#user-alert').show();
