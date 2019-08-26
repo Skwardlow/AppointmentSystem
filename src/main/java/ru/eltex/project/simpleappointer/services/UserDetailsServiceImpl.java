@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Role;
 import ru.eltex.project.simpleappointer.entities.User;
@@ -13,7 +14,7 @@ import ru.eltex.project.simpleappointer.entities.User;
 import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
