@@ -2,11 +2,9 @@ package ru.eltex.project.simpleappointer.entities;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @lombok.Setter
 @lombok.Getter
@@ -24,5 +22,7 @@ public abstract class Parent implements Serializable {
 
     protected String login;
     protected String password;
+    @ManyToMany
+    Set<Role> roles;
 
 }
