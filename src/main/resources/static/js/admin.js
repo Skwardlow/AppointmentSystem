@@ -5,20 +5,20 @@ $(document).ready(function(){
         autoclose: true,
         todayHighlight: true,
     });
-    $('#datepicker').datepicker("setDate", new Date());
 
-    /*$.get("/get_spec",
+    $.get("/users_get",
         function(data){
-            var str = "";
+            var selectList = document.getElementById("specList");
             for(var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                str += data[i].id + "." + data[i].fio + "<br>";
+                var option = document.createElement("option");
+                option.value = data[i].id ;
+                option.text = data[i].name;
+                selectList.appendChild(option);
             }
-            $(".users").html(str);
         }
-    );*/
+    );
 
-    var array = ["Петров","Иванов","Васечкин","Петренко"];
+    /*var array = ["Петров","Иванов","Васечкин","Петренко"];
 
     var selectList = document.getElementById("specList");
 
@@ -27,7 +27,7 @@ $(document).ready(function(){
         option.value = i;
         option.text = array[i];
         selectList.appendChild(option);
-    }
+    }*/
 });
 
 function PrintText() {
@@ -53,9 +53,7 @@ $(function() {
 });
 
 function Change(event) {
-    var selectElement = event.target;
-    var value = selectElement.value;
-    alert(value);
+    alert("speclist = " + $('#specList').val() + "\n" + "date" + $('#datepicker').val());
 }
 
 $(function() {
