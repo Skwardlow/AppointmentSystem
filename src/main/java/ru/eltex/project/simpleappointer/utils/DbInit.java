@@ -17,6 +17,6 @@ public class DbInit implements CommandLineRunner {
         User user = new User("admin","admin","admin","admin","qwe12345");
         user.setRoles(Collections.singleton(Role.ADMIN));
         user.setActive(true);
-        userRepository.save(user);
+         if (!userRepository.existsByUsername("admin")) {userRepository.save(user);}
     }
 }
