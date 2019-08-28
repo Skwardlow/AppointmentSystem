@@ -42,51 +42,13 @@
             <a class="nav-link" href="#">О нас</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal" >Вход</a>
+            <a class="nav-link" href="/login">Вход</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!---------------Modal------------------->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #dee5dd;">
-          <h5 class="modal-title" id="exampleModalLabel">Вход</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="email">Электронная почта</label>
-              <input  type="text" class="form-control"  id="email" required="required" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"  placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">Мы никогда не передадим вашу электронную почту кому-либо еще.</small>
-            </div>
-            <div class="form-group">
-              <label for="password">Пороль</label>
-              <input type="password" class="form-control" id="password" required="required" pattern="[A-Za-z0-9]{6,20}" placeholder="Password">
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-3">
-                <div class="form-group ">
-                  <button type="button" id="button" class="btn btn-primary btn-lg btn-block login-button btn-sm">Войти</button>
-                </div>
-              </div>
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer d-inline-block"  style="height: 25px; line-height: 1px; background-color: #dee5dd; ">
-          <a class="text-sm-left">У вас еще нет аккаунта?</a>
-          <a href="/registration" class="text-left">Регистрация</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Header - set the background image for the header in the line below -->
   <header class="py-5 bg-image-full" style="background-image: url('https://kwantu.co.za/wp-content/uploads/2019/08/image-not-found-png-5.png');">
@@ -99,7 +61,7 @@
       <h1>Заголовок</h1>
       <p class="lead">Текст.</p>
       <p>Абзац.</p>
-      <div sec:authorize="hasAuthority('ADMIN')">idi otsyda adminskaya morda</div>
+      <div sec:authorize="isAuthenticated()">idi otsyda adminskaya morda</div>
       <div class="hello"></div>
     </div>
   </section>
