@@ -7,6 +7,7 @@ import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Role;
 import ru.eltex.project.simpleappointer.entities.User;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 
 @Component
@@ -16,6 +17,7 @@ public class RegUtil {
     @Autowired
     public InviteRepository inviteRepository;
 
+    @Transactional
     public byte regAddU(User user, String invite){
         if (userRepository.existsByEmail(user.getEmail())){
             return 1;

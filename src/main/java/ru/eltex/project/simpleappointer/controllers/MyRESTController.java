@@ -28,7 +28,7 @@ public class MyRESTController {
     public Byte reg_user(@RequestBody String object) throws UnsupportedEncodingException {
         ArrayList<String> req = splitURL.split(object);
         User user = new User(req.get(0) + " " + req.get(1) + " " + req.get(2), req.get(3) , req.get(3) , req.get(4) , req.get(6) );
-        byte answer = regUtil.regAddU(user,"AMAEQpKrf2");
+        byte answer = regUtil.regAddU(user,req.get(5));
         return answer;
     }
 
