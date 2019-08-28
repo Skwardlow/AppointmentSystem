@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.project.simpleappointer.entities.User;
 import ru.eltex.project.simpleappointer.utils.AdminUtils;
@@ -68,7 +70,9 @@ public class MyRESTController {
         for (String iteration: req){
             adminUtils.inviteCreate(iteration);
         }
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = (String) authentication.getPrincipal();
+        System.out.println(name);
         return 0;
     }
 
@@ -76,5 +80,7 @@ public class MyRESTController {
     public String users_get() throws JsonProcessingException {
         return adminUtils.findAllUsers();
     }
+
+
 
 }

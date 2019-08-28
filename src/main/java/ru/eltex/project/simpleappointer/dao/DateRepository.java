@@ -4,7 +4,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.eltex.project.simpleappointer.entities.Date;
 
+import java.util.ArrayList;
+
 @Repository
 public interface DateRepository extends CrudRepository<Date, Long> {
-
+    ArrayList<Date> findAllByDateOfAppointmentAndCusername(String dateOf,String cusername);
+    ArrayList<Date> findAllByDateOfAppointmentAndSusername(String dateOf,String susername);
+    ArrayList<Date> findAllByDateOfAppointment(String dateof);
+    boolean existsByDateOfAppointmentAndIndexInDayAndSusernameAndCusername
+            (String dateOfAppointment, Integer indexInDay, String susername, String cusernameString);
+    void deleteByDateOfAppointmentAndSusername(String dateof,String susername);
 }
