@@ -17,4 +17,8 @@ public class MyController {
         return "registration";
     }
 
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPanelShow(){
+        return "admin";
+    }
 }

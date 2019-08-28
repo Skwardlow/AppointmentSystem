@@ -1,6 +1,9 @@
 package ru.eltex.project.simpleappointer.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.User;
@@ -8,7 +11,7 @@ import ru.eltex.project.simpleappointer.entities.User;
 import java.util.List;
 
 @Service
-public class UserService extends AbstractService<User, UserRepository> {
+public class UserService implements UserDetailsService {
     /*@Autowired
     public UserService(UserRepository repository){
         super(repository);
@@ -20,10 +23,10 @@ public class UserService extends AbstractService<User, UserRepository> {
         if (repository.existsByEmail(user.getEmail())){
             return 1;
         }
-        if (repository.existsByLogin(user.getLogin())){
+        if (repository.existsByUsername(user.getUsername())){
             return 2;
         }
-        if (repository.existsByLoginAndEmail(user.getLogin(),user.getEmail())){
+        if (repository.existsByUsernameAndEmail(user.getUsername(),user.getEmail())){
             return 3;
         }
         repository.save(user);
@@ -51,5 +54,10 @@ public class UserService extends AbstractService<User, UserRepository> {
 
     public void delete(User user){
         repository.delete(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username);
     }
 }

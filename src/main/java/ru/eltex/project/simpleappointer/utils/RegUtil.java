@@ -5,8 +5,11 @@ import org.springframework.stereotype.Component;
 import ru.eltex.project.simpleappointer.dao.InviteRepository;
 import ru.eltex.project.simpleappointer.dao.SpecialistRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
+import ru.eltex.project.simpleappointer.entities.Role;
 import ru.eltex.project.simpleappointer.entities.Specialist;
 import ru.eltex.project.simpleappointer.entities.User;
+
+import java.util.Collections;
 
 @Component
 public class RegUtil {
@@ -38,12 +41,14 @@ public class RegUtil {
         if (userRepository.existsByEmail(user.getEmail())){
             return 1;
         }
-        if (userRepository.existsByLogin(user.getLogin())){
+        if (userRepository.existsByUsername(user.getUsername())){
             return 2;
         }
-        if (userRepository.existsByLoginAndEmail(user.getLogin(),user.getEmail())){
+        if (userRepository.existsByUsernameAndEmail(user.getUsername(),user.getEmail())){
             return 3;
         }
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
         return 0;
     }

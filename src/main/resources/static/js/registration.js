@@ -94,6 +94,9 @@ $(function() {
                         username: username,
                         ivite: invite,
                         password: password
+                    },
+                    error: function (err) {
+                        alert(err);
                     }
                 }).done(function (msg) {
                     alert(msg);

@@ -1,11 +1,14 @@
 package ru.eltex.project.simpleappointer.dao;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.eltex.project.simpleappointer.entities.User;
 
 @Repository
-public interface UserRepository extends CommonRepository<User> {
+public interface UserRepository extends CrudRepository<User,Long> {
     boolean existsByEmail(String email);
-    boolean existsByLogin(String login);
-    boolean existsByLoginAndEmail(String login, String email);
+    boolean existsByUsername(String login);
+    boolean existsByUsernameAndEmail(String login, String email);
+
+    User findByUsername(String username);
 }
