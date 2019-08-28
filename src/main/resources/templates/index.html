@@ -42,8 +42,15 @@
             <a class="nav-link" href="#">О нас</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login">Вход</a>
+            <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/login">Вход</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" th:inline="text" id = "userLogin">[[${#httpServletRequest.remoteUser}]]</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">/Log Out</a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -61,6 +68,8 @@
       <h1>Заголовок</h1>
       <p class="lead">Текст.</p>
       <p>Абзац.</p>
+      <!--<div th:inline="text">Hello '[[${#httpServletRequest.getUserPrincipal()}]]',
+        you do not have permission to access this page.</div>-->
       <div sec:authorize="isAuthenticated()">idi otsyda adminskaya morda</div>
       <div class="hello"></div>
     </div>
