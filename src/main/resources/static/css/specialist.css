@@ -1,0 +1,18 @@
+.font-menu{
+    font-size: 15pt;
+    color: #1b363a;
+}
+.body{
+    background-color: #314d50;
+}
+.button-style{
+    background-color: #345154;
+    color: #dddddd;
+}
+.data-style{
+    background-color: #345154;
+    color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid;
+}

@@ -1,0 +1,23 @@
+.font-menu{
+    font-size: 15pt;
+    color: #cccccc;
+}
+.body{
+    background-color: #345154;
+}
+.button-style{
+    background-color: #3d6167;
+}
+.input-style{
+    background-color: #345154;
+    color: #dddddd;
+}
+.data-style{
+    background-color: #345154;
+    color: #dddddd;
+    width: 207px;
+    height: 38px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid;
+}
