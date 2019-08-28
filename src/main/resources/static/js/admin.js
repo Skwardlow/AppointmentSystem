@@ -7,6 +7,16 @@ $(document).ready(function(){
     });
     $('#datepicker').datepicker("setDate", new Date());
 
+    /*$.get("/get_spec",
+        function(data){
+            var str = "";
+            for(var i = 0; i < data.length; i++) {
+                console.log(data[i]);
+                str += data[i].id + "." + data[i].fio + "<br>";
+            }
+            $(".users").html(str);
+        }
+    );*/
 
     var array = ["Петров","Иванов","Васечкин","Петренко"];
 
@@ -51,11 +61,13 @@ function Change(event) {
 $(function() {
     $('#deleteSpec').click(function() {
         if(confirm("Удалить выбранного специалиста из базы данных?")){
+            var specLogin = {};
+            specLogin.login = $('#specList').val();
             $.ajax({
                 type: "POST",
                 url: '/delete_spec',
                 dataType : "text",
-                data: $('#specList').val()
+                data: specLogin
             }).done(function( msg ) {
                 if(msg == 0){
                     alert("Вы удалили специалиста!");
@@ -70,11 +82,13 @@ $(function() {
 $(function() {
     $('#deleteDay').click(function() {
         if(confirm("Удалить все записи у специалиста за это число?")){
+            var dateDay = {};
+            dateDay.data = $('#datepicker').val();
             $.ajax({
                 type: "POST",
                 url: '/delete_day',
                 dataType : "text",
-                data: $('#datepicker').val()
+                data: dateDay
             }).done(function( msg ) {
                 if(msg == 0){
                     alert("Вы удалили все записи!");
@@ -112,7 +126,7 @@ $(function() {
             url: '/invite_create',
             dataType : "text",
             data: req
-        }).done(function( msg ) {
+    }).done(function( msg ) {
             if(msg == 0){
                 alert("Вы успешно создали приглашения!");
             }else if (msg == 1){
@@ -124,12 +138,15 @@ $(function() {
 
 function generateInvite(amount) {
     var toForm = '';
-    var toBD = '';
+    var toBD = {};
+    var name = '';
+
     var invite = '';
     for ( var i = 0; i < amount; i++ ) {
         invite = makeinvite(10);
         toForm+= (i+1)+") " + invite + "\n";
-        toBD+= invite + "&";
+        name = "invite" + i;
+        toBD[name] = invite;
     }
     $('#inviteList').val(toForm);
     return toBD;
