@@ -28,16 +28,5 @@ public class MyRESTController {
         byte answer = regUtil.regAddU(user,req[5]);
         return answer;
     }
-    @RequestMapping(value = "/login_user",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public Byte login_user(@RequestBody String json) throws UnsupportedEncodingException {
-        String[] req = URLDecoder.decode(json, "UTF-8").split("&");
-        for(int i = 0; i < req.length; i++){
-            int index = req[i].indexOf('=');
-            req[i] = req[i].substring(index + EXCLUDING_INDEX);
-            System.out.println(req[i]);
-        }
 
-        byte answer = 0;
-        return answer;
-    }
 }
