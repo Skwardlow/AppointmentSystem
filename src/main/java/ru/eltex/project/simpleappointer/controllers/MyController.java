@@ -21,4 +21,10 @@ public class MyController {
     public String adminPanelShow(){
         return "admin";
     }
+
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public String clientPanelShow(){return "client";}
+
+    @RequestMapping(value = "/specialist", method = RequestMethod.GET)
+    public String specialistPanelShow(){return "specialist";}
 }
