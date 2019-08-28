@@ -28,7 +28,7 @@ public class RegUtil {
         if (userRepository.existsByUsernameAndEmail(user.getUsername(),user.getEmail())){
             return 3;
         }
-        if(!inviteRepository.existsByIdentify(invite)){
+        if((!inviteRepository.existsByIdentify(invite))&&(invite!=null)){
             return 4;
         }
         if((inviteRepository.existsByIdentify(invite))&&(invite!=null)){

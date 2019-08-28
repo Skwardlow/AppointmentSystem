@@ -1,5 +1,6 @@
 package ru.eltex.project.simpleappointer.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,9 +28,18 @@ public class MyRESTController {
     @RequestMapping(value = "/reg_user",  produces = MediaType.APPLICATION_JSON_VALUE)
     public Byte reg_user(@RequestBody String object) throws UnsupportedEncodingException {
         ArrayList<String> req = splitURL.split(object);
-        User user = new User(req.get(0) + " " + req.get(1) + " " + req.get(2), req.get(3) , req.get(3) , req.get(4) , req.get(6) );
-        byte answer = regUtil.regAddU(user,req.get(5));
-        return answer;
+        if (req.size()==7){
+            User user = new User(req.get(0) + " " + req.get(1) + " " + req.get(2), req.get(3) , req.get(3) , req.get(4) , req.get(6) );
+            byte answer = regUtil.regAddU(user,req.get(5));
+            return answer;
+        }
+
+        else {
+            User user = new User(req.get(0) + " " + req.get(1) + " " + req.get(2), req.get(3) , req.get(3) , req.get(4) , req.get(5) );
+            byte answer = regUtil.regAddU(user,null);
+            return answer;
+        }
+
     }
 
     @RequestMapping(value = "/delete_spec",  produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,6 +70,11 @@ public class MyRESTController {
         }
 
         return 0;
+    }
+
+    @RequestMapping(value ="/users_get",produces = MediaType.APPLICATION_JSON_VALUE)
+    public String users_get() throws JsonProcessingException {
+        return adminUtils.findAllUsers();
     }
 
 }
