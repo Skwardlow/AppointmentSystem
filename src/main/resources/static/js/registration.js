@@ -128,3 +128,16 @@ $(function() {
         }
     });
 });
+
+$(function() {
+    $('#materialSpec').click(function() {
+        $('#key-check').show();
+    });
+
+});
+$(function() {
+    $('#materialClient').click(function() {
+        $('#key-check').hide();
+    });
+
+});
