@@ -18,7 +18,7 @@ public class DateUtil {
     public String returnAppointmentsSpecialist(String date,String susername) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Date> dates = new ArrayList<>();
-        dateRepository.findAllByDateOfAppointmentAndSusername(date,susername).forEach(dates::add);
+        dateRepository.findAllByDateOfAppointmentAndSusernameOrderByIndexInDay(date,susername).forEach(dates::add);
         return objectMapper.writeValueAsString(dates);
     }
 
