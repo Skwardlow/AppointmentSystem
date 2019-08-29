@@ -7,27 +7,19 @@ $(document).ready(function(){
     });
     $('#datepicker').datepicker("setDate", new Date());
 
-    /*$.get("/get_spec",
+    $.get("/users_get",
         function(data){
-            var str = "";
+            var selectList = document.getElementById("specList");
             for(var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                str += data[i].id + "." + data[i].fio + "<br>";
+                var option = document.createElement("option");
+                option.value = data[i].username ;
+                option.text = data[i].name;
+                selectList.appendChild(option);
             }
-            $(".users").html(str);
         }
-    );*/
+    );
+    $('#specList');
 
-    var array = ["Петров","Иванов","Васечкин","Петренко"];
-
-    var selectList = document.getElementById("specList");
-
-    for (var i = 0; i < array.length; i++) {
-        var option = document.createElement("option");
-        option.value = i;
-        option.text = array[i];
-        selectList.appendChild(option);
-    }
 });
 
 function PrintText() {
@@ -52,11 +44,12 @@ $(function() {
     });
 });
 
-function Change(event) {
-    var selectElement = event.target;
-    var value = selectElement.value;
-    alert(value);
-}
+/*function Change(event) {
+    if($('#specList').val() != null){
+        alert("speclist = " + $('#specList').val() + "\n" + "date" + $('#datepicker').val());
+    }
+
+}*/
 
 $(function() {
     $('#deleteSpec').click(function() {
@@ -84,6 +77,7 @@ $(function() {
         if(confirm("Удалить все записи у специалиста за это число?")){
             var dateDay = {};
             dateDay.data = $('#datepicker').val();
+            dateDay.spec = $('#specList').val();
             $.ajax({
                 type: "POST",
                 url: '/delete_day',

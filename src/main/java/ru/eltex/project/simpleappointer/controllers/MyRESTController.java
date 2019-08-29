@@ -4,9 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.project.simpleappointer.entities.User;
 import ru.eltex.project.simpleappointer.utils.AdminUtils;
+import ru.eltex.project.simpleappointer.utils.DateUtil;
 import ru.eltex.project.simpleappointer.utils.RegUtil;
 import ru.eltex.project.simpleappointer.utils.SplitURL;
 
@@ -24,6 +27,8 @@ public class MyRESTController {
     SplitURL splitURL;
     @Autowired
     AdminUtils adminUtils;
+    @Autowired
+    DateUtil dateUtil;
 
     @RequestMapping(value = "/reg_user",  produces = MediaType.APPLICATION_JSON_VALUE)
     public Byte reg_user(@RequestBody String object) throws UnsupportedEncodingException {
@@ -52,7 +57,7 @@ public class MyRESTController {
     @RequestMapping(value = "/delete_day",  produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer delete_day(@RequestBody String object) throws UnsupportedEncodingException {
         ArrayList<String> req = splitURL.split(object);
-
+            dateUtil.dayWithAppointmentsDelete(req.get(0),req.get(1));
         return 0;
     }
 
@@ -68,7 +73,9 @@ public class MyRESTController {
         for (String iteration: req){
             adminUtils.inviteCreate(iteration);
         }
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        System.out.println(name);
         return 0;
     }
 
@@ -76,5 +83,17 @@ public class MyRESTController {
     public String users_get() throws JsonProcessingException {
         return adminUtils.findAllUsers();
     }
+
+    @RequestMapping(value ="/get_dayspec",produces = MediaType.APPLICATION_JSON_VALUE)
+    public String users_get(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
+        ArrayList<String> req = splitURL.split(object);
+        for(String i: req){
+            System.out.println(i);
+        }
+        System.out.println(dateUtil.returnAppointmentsSpecialist(req.get(1),req.get(0)));
+        return dateUtil.returnAppointmentsSpecialist(req.get(1),req.get(0));
+    }
+
+
 
 }

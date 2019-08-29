@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.eltex.project.simpleappointer.dao.InviteRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Invite;
+import ru.eltex.project.simpleappointer.entities.Role;
 import ru.eltex.project.simpleappointer.entities.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Component
 @Transactional
@@ -37,7 +39,7 @@ public class AdminUtils {
     public String findAllUsers() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
+        userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
         return mapper.writeValueAsString(users);
     }
 }

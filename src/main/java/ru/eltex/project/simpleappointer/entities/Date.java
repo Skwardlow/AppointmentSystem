@@ -25,13 +25,15 @@ public class Date {
 
     private String dateOfAppointment;
     private Integer indexInDay;
-    private Integer specialist_id;
-    private Integer client_id;
+    private String susername;
+    private String cusername;
 
-    public Date(String dateOfAppointment, Integer indexInDay, Integer specialist_id, Integer client_id) {
+    public Date(String dateOfAppointment, Integer indexInDay, String susername, String cusername) {
         this.dateOfAppointment = dateOfAppointment;
         this.indexInDay = indexInDay;
-        this.specialist_id = specialist_id;
-        this.client_id = client_id;
+        this.susername = susername;
+        this.cusername = cusername;
     }
+
+
 }
