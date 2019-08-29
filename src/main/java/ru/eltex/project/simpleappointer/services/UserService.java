@@ -12,10 +12,6 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
-    /*@Autowired
-    public UserService(UserRepository repository){
-        super(repository);
-    }*/
     @Autowired
     private UserRepository repository;
 

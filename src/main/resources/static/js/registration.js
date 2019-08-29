@@ -55,6 +55,7 @@ $(function() {
                         father: father,
                         email: email,
                         username: username,
+                        ivite: invite,
                         password: password
                     }
                 }).done(function (msg) {
@@ -84,7 +85,7 @@ $(function() {
                 var invite = $('#key').val();
                 $.ajax({
                     type: "POST",
-                    url: '/reg_spec',
+                    url: '/reg_user',
                     dataType: "text",
                     data: {
                         family: family,
@@ -96,7 +97,7 @@ $(function() {
                         password: password
                     },
                     error: function (err) {
-                        alert(err);
+                        alert("Error");
                     }
                 }).done(function (msg) {
                     alert(msg);
@@ -127,4 +128,17 @@ $(function() {
             }
         }
     });
+});
+
+$(function() {
+    $('#materialSpec').click(function() {
+        $('#key-check').show();
+    });
+
+});
+$(function() {
+    $('#materialClient').click(function() {
+        $('#key-check').hide();
+    });
+
 });
