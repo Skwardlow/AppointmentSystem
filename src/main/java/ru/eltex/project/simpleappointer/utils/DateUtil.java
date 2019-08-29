@@ -48,5 +48,9 @@ public class DateUtil {
         dateRepository.deleteByDateOfAppointmentAndSusername(date,susername);
     }
 
+    public void deleteData(Long id){
+        dateRepository.deleteById(id);
+    }
+
 
 }

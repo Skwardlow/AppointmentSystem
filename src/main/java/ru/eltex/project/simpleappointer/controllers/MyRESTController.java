@@ -95,6 +95,7 @@ public class MyRESTController {
         ArrayList<String> req = splitURL.split(object);
         for(String i: req){
             System.out.println(i);
+            dateUtil.deleteData(Long.valueOf(i));
         }
         return 0;
     }
