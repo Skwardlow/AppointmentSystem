@@ -44,12 +44,31 @@ $(function() {
     });
 });
 
-/*function Change(event) {
-    if($('#specList').val() != null){
-        alert("speclist = " + $('#specList').val() + "\n" + "date" + $('#datepicker').val());
-    }
+$(function() {
+    $('#clearUsers').click(function() {
+        if(confirm("Удалить выбранные записи??")){
+            var clearUsers = {};
+            var box = '';
+            $('input:checkbox:checked').each(function(){
+                box = "box" + $(this).val();
+                clearUsers[box] = $(this).val();
+            });
 
-}*/
+            $.ajax({
+                type: "POST",
+                url: '/clear_users',
+                dataType : "text",
+                data: clearUsers
+            }).done(function( msg ) {
+                if(msg == 0){
+                    alert("Вы удалили записи!");
+                }else if (msg == 1){
+                    alert("Произошла ошибка при удалении!");
+                }
+            });
+        }
+    });
+});
 
 $(function() {
     $('#deleteSpec').click(function() {

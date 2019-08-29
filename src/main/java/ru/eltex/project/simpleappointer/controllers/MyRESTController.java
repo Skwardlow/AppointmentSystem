@@ -87,13 +87,17 @@ public class MyRESTController {
     @RequestMapping(value ="/get_dayspec",produces = MediaType.APPLICATION_JSON_VALUE)
     public String users_get(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
         ArrayList<String> req = splitURL.split(object);
-        for(String i: req){
-            System.out.println(i);
-        }
-        System.out.println(dateUtil.returnAppointmentsSpecialist(req.get(1),req.get(0)));
         return dateUtil.returnAppointmentsSpecialist(req.get(1),req.get(0));
     }
 
+    @RequestMapping(value = "/clear_users",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public Integer clear_users(@RequestBody String object) throws UnsupportedEncodingException {
+        ArrayList<String> req = splitURL.split(object);
+        for(String i: req){
+            System.out.println(i);
+        }
+        return 0;
+    }
 
 
 }
