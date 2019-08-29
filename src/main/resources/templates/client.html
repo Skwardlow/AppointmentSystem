@@ -58,7 +58,7 @@
             specDay.date = $('#datepicker').val();
             $.ajax({
                 type: "POST",
-                url: '/get_dayspec',
+                url: '/get_dayclient',
                 dataType : "json",
                 data: specDay
             }).done(function( msg ) {

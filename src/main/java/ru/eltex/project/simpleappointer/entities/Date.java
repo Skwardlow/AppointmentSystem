@@ -13,11 +13,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Date {
     @Transient
-    private Integer beginWorkDayHour = 9;
+    private static Integer beginWorkDayHour = 9;
     @Transient
-    private Integer gradTimeOfAppointment = 60;
+    private static Integer gradTimeOfAppointment = 60;
     @Transient
-    private Integer amountOfAppointment = 8;
+    private static Integer amountOfAppointment = 8;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

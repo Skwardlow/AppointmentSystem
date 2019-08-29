@@ -22,10 +22,17 @@ public class DateUtil {
         return objectMapper.writeValueAsString(dates);
     }
 
-    public String returnAppointmentsUser(String date, String cusername) throws JsonProcessingException {
+    public String returnAppointmentsUser(String date, String susername) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Date> dates = new ArrayList<>();
-        dateRepository.findAllByDateOfAppointmentAndCusername(date,cusername).forEach(dates::add);
+        Integer index = 8;
+        for (int i = 0; i<index;i++){
+            if(dateRepository.existsByDateOfAppointmentAndIndexInDayAndSusername(date,i,susername)){
+                dates.add(dateRepository.findByDateOfAppointmentAndSusernameAndIndexInDayOrderByIndexInDay
+                (date,susername,i));
+            }
+            else dates.add(new Date(null,i,null,null))  ;
+        }
         return objectMapper.writeValueAsString(dates);
     }
 
