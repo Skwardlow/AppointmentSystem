@@ -16,5 +16,6 @@ public interface DateRepository extends CrudRepository<Date, Long> {
             (String dateOfAppointment, Integer indexInDay, String susername, String cusernameString);
     @Transactional
     void deleteByDateOfAppointmentAndSusername(String dateof,String susername);
+    @Transactional
     void deleteById(Integer id);
 }
