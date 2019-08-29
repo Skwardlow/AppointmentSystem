@@ -59,5 +59,9 @@ public class DateUtil {
         dateRepository.deleteById(id);
     }
 
+    public void writeData(String date, Integer dayIndex,String susername, String cusername){
+        dateRepository.save(new Date(date,dayIndex,susername,cusername));
+    }
+
 
 }

@@ -110,6 +110,20 @@ public class MyRESTController {
         return 0;
     }
 
+    @RequestMapping(value = "/write_on",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public Integer write_on(@RequestBody String object) throws UnsupportedEncodingException {
+        ArrayList<String> req = splitURL.split(object);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        for(String i: req){
+            System.out.println(i);
+            dateUtil.writeData(req.get(1),Integer.valueOf(req.get(2)),req.get(0),name);
+        }
+        return 0;
+    }//0-спец 1-дата 2-хз -чекбоксы (индекс в дне)
+    //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //        String name = authentication.getName();
+
     @RequestMapping(value ="/delete_myDay",produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer delete_myDay(@RequestBody String object) throws UnsupportedEncodingException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
