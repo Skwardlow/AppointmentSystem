@@ -77,6 +77,7 @@ $(function() {
         if(confirm("Удалить все записи у специалиста за это число?")){
             var dateDay = {};
             dateDay.data = $('#datepicker').val();
+            dateDay.spec = $('#specList').val();
             $.ajax({
                 type: "POST",
                 url: '/delete_day',

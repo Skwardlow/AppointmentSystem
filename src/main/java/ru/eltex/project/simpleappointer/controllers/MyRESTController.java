@@ -57,7 +57,7 @@ public class MyRESTController {
     @RequestMapping(value = "/delete_day",  produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer delete_day(@RequestBody String object) throws UnsupportedEncodingException {
         ArrayList<String> req = splitURL.split(object);
-
+            dateUtil.dayWithAppointmentsDelete(req.get(0),req.get(1));
         return 0;
     }
 
