@@ -54,6 +54,53 @@
 
     }
 
+    $(function() {
+        $('#clearUsers').click(function() {
+            if(confirm("Удалить выбранные записи??")){
+                var clearUsers = {};
+                var box = '';
+                $('input:checkbox:checked').each(function(){
+                    box = "box" + $(this).val();
+                    clearUsers[box] = $(this).val();
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: '/clear_users',
+                    dataType : "text",
+                    data: clearUsers
+                }).done(function( msg ) {
+                    if(msg == 0){
+                        alert("Вы удалили записи!");
+                    }else if (msg == 1){
+                        alert("Произошла ошибка при удалении!");
+                    }
+                });
+            }
+        });
+    });
+
+    $(function() {
+        $('#deleteDay').click(function() {
+            if(confirm("Удалить все записи у специалиста за это число?")){
+                var dateDay = {};
+                dateDay.data = $('#datepicker').val();
+                $.ajax({
+                    type: "POST",
+                    url: '/delete_myDay',
+                    dataType : "text",
+                    data: dateDay
+                }).done(function( msg ) {
+                    if(msg == 0){
+                        alert("Вы удалили все записи!");
+                    }else if (msg == 1){
+                        alert("Произошла ошибка при удалении!");
+                    }
+                });
+            }
+        });
+    });
+
 </script>
 
 <body class="body">

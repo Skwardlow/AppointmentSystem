@@ -101,11 +101,12 @@ public class MyRESTController {
     }
 
     @RequestMapping(value ="/delete_myDay",produces = MediaType.APPLICATION_JSON_VALUE)
-    public String get_my_username() throws JsonProcessingException {
+    public Integer delete_myDay(@RequestBody String object) throws UnsupportedEncodingException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        System.out.println(name);
-        return name;
+        ArrayList<String> req = splitURL.split(object);
+        dateUtil.dayWithAppointmentsDelete(req.get(0), name);
+        return 0;
     }
 
     @RequestMapping(value ="/get_myDay",produces = MediaType.APPLICATION_JSON_VALUE)
