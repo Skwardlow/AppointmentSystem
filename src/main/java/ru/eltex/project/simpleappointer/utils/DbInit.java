@@ -12,11 +12,14 @@ import java.util.Collections;
 public class DbInit implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
+
     @Override
     public void run(String... args) throws Exception {
-        User user = new User("admin","admin","admin","admin","qwe12345");
+        User user = new User("admin", "admin", "admin", "admin", "qwe12345");
         user.setRoles(Collections.singleton(Role.ADMIN));
         user.setActive(true);
-         if (!userRepository.existsByUsername("admin")) {userRepository.save(user);}
+        if (!userRepository.existsByUsername("admin")) {
+            userRepository.save(user);
+        }
     }
 }
