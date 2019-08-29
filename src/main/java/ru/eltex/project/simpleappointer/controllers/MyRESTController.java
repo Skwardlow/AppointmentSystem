@@ -100,5 +100,21 @@ public class MyRESTController {
         return 0;
     }
 
+    @RequestMapping(value ="/delete_myDay",produces = MediaType.APPLICATION_JSON_VALUE)
+    public String get_my_username() throws JsonProcessingException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        System.out.println(name);
+        return name;
+    }
+
+    @RequestMapping(value ="/get_myDay",produces = MediaType.APPLICATION_JSON_VALUE)
+    public String get_myDay(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
+        ArrayList<String> req = splitURL.split(object);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        System.out.println(dateUtil.returnAppointmentsSpecialist(req.get(0),name));
+        return dateUtil.returnAppointmentsSpecialist(req.get(0),name);
+    }
 
 }

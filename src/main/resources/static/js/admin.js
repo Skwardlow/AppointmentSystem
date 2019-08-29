@@ -22,6 +22,40 @@ $(document).ready(function(){
 
 });
 
+
+function Change(event) {
+    if($('#specList').val() != null){
+        $("#outputDate").html("");
+        var specDay = {};
+        specDay.spec = $('#specList').val();
+        specDay.date = $('#datepicker').val();
+        $.ajax({
+            type: "POST",
+            url: '/get_dayspec',
+            dataType : "json",
+            data: specDay
+        }).done(function( msg ) {
+            var beginDay = msg[0].beginWorkDayHour;
+            for(var i = 0; i < msg.length; i++) {
+                $("#outputDate")
+                    .append('<div class="input-group">\n' +
+                        '                    <div class="input-group-prepend">\n' +
+                        '                        <div class="input-group-text">\n' +
+                        '                            <input type="checkbox" id = "' + "indexOfDay" + i + '" value="'+msg[i].id+'"  aria-label="Checkbox for following text input">\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <input disabled type="text" class="form-control"  aria-label="Text input with checkbox" value="'+msg[i].dateOfAppointment + " - " + (beginDay+msg[i].indexInDay) + ":00" + " - " + msg[i].cusername +'">\n' +
+                        '                </div>')
+
+
+            }
+        });
+
+    }
+
+}
+
+
 function PrintText() {
     var lines = $('#inviteList').val().replace(/^[\n\r]+|[\n\r]+$/g,'').split(/[\n\r]+/);
     var text = "<p>Приглашения</p>";
