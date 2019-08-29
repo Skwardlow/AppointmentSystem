@@ -5,29 +5,21 @@ $(document).ready(function(){
         autoclose: true,
         todayHighlight: true,
     });
+    $('#datepicker').datepicker("setDate", new Date());
 
     $.get("/users_get",
         function(data){
             var selectList = document.getElementById("specList");
             for(var i = 0; i < data.length; i++) {
                 var option = document.createElement("option");
-                option.value = data[i].id ;
+                option.value = data[i].username ;
                 option.text = data[i].name;
                 selectList.appendChild(option);
             }
         }
     );
+    $('#specList');
 
-    /*var array = ["Петров","Иванов","Васечкин","Петренко"];
-
-    var selectList = document.getElementById("specList");
-
-    for (var i = 0; i < array.length; i++) {
-        var option = document.createElement("option");
-        option.value = i;
-        option.text = array[i];
-        selectList.appendChild(option);
-    }*/
 });
 
 function PrintText() {
@@ -52,9 +44,12 @@ $(function() {
     });
 });
 
-function Change(event) {
-    alert("speclist = " + $('#specList').val() + "\n" + "date" + $('#datepicker').val());
-}
+/*function Change(event) {
+    if($('#specList').val() != null){
+        alert("speclist = " + $('#specList').val() + "\n" + "date" + $('#datepicker').val());
+    }
+
+}*/
 
 $(function() {
     $('#deleteSpec').click(function() {
