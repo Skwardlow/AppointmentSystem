@@ -115,10 +115,7 @@ public class MyRESTController {
         ArrayList<String> req = splitURL.split(object);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        for(String i: req){
-            System.out.println(i);
             dateUtil.writeData(req.get(1),Integer.valueOf(req.get(2)),req.get(0),name);
-        }
         return 0;
     }//0-спец 1-дата 2-хз -чекбоксы (индекс в дне)
     //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
