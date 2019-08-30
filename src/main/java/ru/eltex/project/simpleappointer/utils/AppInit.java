@@ -27,20 +27,19 @@ public class AppInit implements CommandLineRunner {
         Properties prop = new Properties();
         prop.load(input);
 
-
-        InputStream in = new URL(prop.getProperty("background-image")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_one.jpg"), StandardCopyOption.REPLACE_EXISTING);
-        in = new URL(prop.getProperty("logo-image")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Logo.png"), StandardCopyOption.REPLACE_EXISTING);
-        in = new URL(prop.getProperty("registration-back")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_two.jpg"), StandardCopyOption.REPLACE_EXISTING);
-        in = new URL(prop.getProperty("work-back")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_back.jpg"), StandardCopyOption.REPLACE_EXISTING);
-        in = new URL(prop.getProperty("left-column")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_left_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
-        in = new URL(prop.getProperty("right-column")).openStream();
-        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_right_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
-
+//
+//        //InputStream in = new URL(prop.getProperty("background-image")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_one.jpg"), StandardCopyOption.REPLACE_EXISTING);
+//        in = new URL(prop.getProperty("logo-image")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Logo.png"), StandardCopyOption.REPLACE_EXISTING);
+//        in = new URL(prop.getProperty("registration-back")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_two.jpg"), StandardCopyOption.REPLACE_EXISTING);
+//        in = new URL(prop.getProperty("work-back")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_back.jpg"), StandardCopyOption.REPLACE_EXISTING);
+//        in = new URL(prop.getProperty("left-column")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_left_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
+//        in = new URL(prop.getProperty("right-column")).openStream();
+//        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_right_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
         User user = new User
                 ("admin", "admin", "admin", "admin", prop.getProperty("admin-password"));
         user.setRoles(Collections.singleton(Role.ADMIN));

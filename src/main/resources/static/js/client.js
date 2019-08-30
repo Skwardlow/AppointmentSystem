@@ -78,7 +78,6 @@ $(function() {
             $('input:checkbox:checked').each(function(){
                 box = "box" + $(this).val();
                 clearUsers[box] = $(this).val();
-                alert($(this).val());
             });
 
             $.ajax({
@@ -92,6 +91,7 @@ $(function() {
                 }else if (msg == 1){
                     alert("Произошла ошибка при записи!");
                 }
+                Change();
             });
         }
     });

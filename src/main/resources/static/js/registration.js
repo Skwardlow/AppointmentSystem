@@ -100,7 +100,6 @@ $(function() {
                         alert("Error");
                     }
                 }).done(function (msg) {
-                    alert(msg);
                     if (msg == 0) {
                         $('#user-alert').hide();
                         alert("Вы успешно зарегестрировались, далее вы попадете на главную страницу");
