@@ -7,7 +7,6 @@ import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Role;
 import ru.eltex.project.simpleappointer.entities.User;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -18,7 +17,7 @@ import java.util.Collections;
 import java.util.Properties;
 
 @Component
-public class DbInit implements CommandLineRunner {
+public class AppInit implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
@@ -29,9 +28,18 @@ public class DbInit implements CommandLineRunner {
         prop.load(input);
 
 
-        try(InputStream in = new URL(prop.getProperty("background-image")).openStream()){
-            Files.copy(in, Paths.get("src/main/resources/static/img.jpg"), StandardCopyOption.REPLACE_EXISTING);
-        }
+        InputStream in = new URL(prop.getProperty("background-image")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_one.jpg"), StandardCopyOption.REPLACE_EXISTING);
+        in = new URL(prop.getProperty("logo-image")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Logo.png"), StandardCopyOption.REPLACE_EXISTING);
+        in = new URL(prop.getProperty("registration-back")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_two.jpg"), StandardCopyOption.REPLACE_EXISTING);
+        in = new URL(prop.getProperty("work-back")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_back.jpg"), StandardCopyOption.REPLACE_EXISTING);
+        in = new URL(prop.getProperty("left-column")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_left_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
+        in = new URL(prop.getProperty("right-column")).openStream();
+        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_right_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
 
         User user = new User
                 ("admin", "admin", "admin", "admin", prop.getProperty("admin-password"));

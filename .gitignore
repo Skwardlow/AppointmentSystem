@@ -10,7 +10,7 @@ build/
 *gradle/
 *gradlew*
 *.jpg*
-*.log*
+*.lo*
 
 ### STS ###
 .apt_generated
