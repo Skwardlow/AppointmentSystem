@@ -49,7 +49,10 @@
             <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/registration">Регистрация</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">Log Out</a>
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/specialist">Мое рассписание</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/client">Записатся</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:inline="text" id = "userLogin">[[${#httpServletRequest.remoteUser}]]</a>
@@ -75,8 +78,6 @@
       <h1>Заголовок</h1>
       <p class="lead">Текст.</p>
       <p>Абзац.</p>
-      <!---->
-
     </div>
   </section>
 
@@ -96,10 +97,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-
+  <footer class="py-3 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">footer</p>
+        <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/admin" style="color: #dddddd">Вы админ?</a>
     </div>
     <!-- /.container -->
   </footer>

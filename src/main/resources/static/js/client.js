@@ -56,6 +56,7 @@ function Change(event) {
                             '                    </div>\n' +
                             '                    <input disabled type="text" class="form-control"  aria-label="Text input with checkbox" value="'+msg[i].dateOfAppointment + " - " + (beginDay+msg[i].indexInDay) + ":00" + " - " + "Занято" +'">\n' +
                             '                </div>')
+
                 }
 
 

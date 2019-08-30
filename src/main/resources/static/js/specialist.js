@@ -49,7 +49,7 @@ function Change(event) {
         dataType : "json",
         data: myDay
     }).done(function( msg ) {
-        var beginDay = msg[0].beginWorkDayHour;
+        var beginDay = 9;
         for(var i = 0; i < msg.length; i++) {
             $("#outputDate")
                 .append('<div class="input-group">\n' +
