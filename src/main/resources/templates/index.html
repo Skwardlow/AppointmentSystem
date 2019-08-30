@@ -35,20 +35,24 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" href="#">Контакты</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">О нас</a>
-          </li>
+          </li>-->
+
           <li class="nav-item">
             <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/login">Вход</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/registration">Регистрация</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:inline="text" id = "userLogin">[[${#httpServletRequest.remoteUser}]]</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">/Log Out</a>
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">Log Out</a>
           </li>
 
         </ul>
@@ -58,8 +62,8 @@
 
 
   <!-- Header - set the background image for the header in the line below -->
-  <header class="py-5 bg-image-full" style="background-image: url('https://kwantu.co.za/wp-content/uploads/2019/08/image-not-found-png-5.png');">
-    <img class="img-fluid d-block mx-auto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXz9Pa5vsq2u8jN0dnV2N/o6u7FydPi5Onw8fS+ws3f4ee6v8v29/jY2+Hu7/Ly9PbJztbQ1dxJagBAAAAC60lEQVR4nO3b2ZaCMBREUQbDJOP//2wbEGVIFCHKTa+zH7uVRVmBBJQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCpdOzvQQqaq2KmuSrOzQ02lSeRem8rpsQq/ozg72Kj4UkAxEev8awnzs7P1yiIadsfpQXjfZCHhUCzbfmeurdNz6bDRsBWRsB+k0cXxdHjpa0wkTBn3hKnjzRZyEgYk3IeEv2RKWCt1cN9EJ0zjfm7Mq/rAVgUnbLpwnK/zA2tnuQmzJHquuqJq91blJuwmAW8rHbV3q2ITFrOAt7Xz3l2UmrBMlpcHe9fOUhOqRYVhFO/cqtSEy0H6bh/tJ1uhCctqlTB/NSnG9pOt1ISXjxLq825laVFowo9GaRPrF9talJqw3n6macaZ09yi1ISG2cLyriwePwxzi1ITru4s2naxma59TC2KTRjE83FqmQ6yeDaUDS3KTRhMV96h5TTSLD4HQ4uCE9bxePUU5pYL/3mD5o9CcMKgTONc39NNLrV5iK4aNLUoOWHQ38RQtW3nsm6db92i8ISvGBtct+hvwqyzBFxE9DehrcHlQPU1YWNvcNGirwlfNThv0ZOE9eJG1OsGZy36kVBdczU9e7RvAz5b9CFhqfIwSp4XwG+OwUWLPiRUV/33Z4tbGtTvGK635CfUDfb/SO5rt20N9t8m65fLT9g3GD5abDY2qC+lvEg4NjhEvLW4tUFvEj4a7OXq3TzoW8Jpg0PEzfk8SThv8EMeJFw1+O8SHmrQg4QHG/Qg4cEGxSc83KD4hIcblJ6w3L508TXh+vtDEpLw3GwDEpKQhOdznVD2fRr9tdpRw/1HqQndIeEvkXCXUlDC+1NBndsnge/fwyVnp9PGH3p95dm1WMKza4/fI37j+UPXR/c+2X9/hjQI0uO3LsyuMioM9A8Sjy/W1iIhY7Sn2tzpUahdWyXiNDNSxcWtSlCBAAAAAAAAAAAAAAAAAAAAAAAAAAAAwCn+AEXGNosxDBhFAAAAAElFTkSuQmCC" alt="">
+  <header class="py-5 bg-image-full" style="background-image: url('http://sf.co.ua/15/10/wallpaper-1186f7.jpg');">
+    <img class="img-fluid d-block mx-auto" src="https://psv4.userapi.com/c848332/u121747155/docs/d7/548b6d2c8f6b/Logo.png?extra=nH3wMWpWgyaF1fpfUph2TtXSOd2dVw5Z8B4h9ZTZM3zVabBa1bEXBNjyYnh3PS9KOXD6_vnNhfwEi_f982fSDdft4ZS8Z-qJzLEtbPVbdRtWPrF5rW9EybU3rz3QR_uEmMaJu-sKoao5ZpkqHKyXeYFiNg" alt="">
   </header>
 
   <!-- Content section -->
@@ -68,15 +72,15 @@
       <h1>Заголовок</h1>
       <p class="lead">Текст.</p>
       <p>Абзац.</p>
-      <!--<div th:inline="text">Hello '[[${#httpServletRequest.getUserPrincipal()}]]',
-        you do not have permission to access this page.</div>-->
-      <div sec:authorize="isAuthenticated()">idi otsyda adminskaya morda</div>
-      <div class="hello"></div>
+      <!---->
+      <div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">
+        <a th:href="@{/somelink}">ADMIN LINK</a>
+      </div>
     </div>
   </section>
 
   <!-- Image Section - set the background image for the header in the line below -->
-  <section class="py-5 bg-image-full" style="background-image: url('https://kwantu.co.za/wp-content/uploads/2019/08/image-not-found-png-5.png');">
+  <section class="py-5 bg-image-full" style="background-image: url('http://sf.co.ua/15/10/wallpaper-1186f7.jpg'); ">
     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
     <div style="height: 200px;"></div>
   </section>
