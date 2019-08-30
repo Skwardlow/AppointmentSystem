@@ -49,6 +49,9 @@
             <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/registration">Регистрация</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">Log Out</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" th:inline="text" id = "userLogin">[[${#httpServletRequest.remoteUser}]]</a>
           </li>
           <li class="nav-item">
@@ -62,8 +65,8 @@
 
 
   <!-- Header - set the background image for the header in the line below -->
-  <header class="py-5 bg-image-full" style="background-image: url('http://sf.co.ua/15/10/wallpaper-1186f7.jpg');">
-    <img class="img-fluid d-block mx-auto" src="https://psv4.userapi.com/c848332/u121747155/docs/d7/548b6d2c8f6b/Logo.png?extra=nH3wMWpWgyaF1fpfUph2TtXSOd2dVw5Z8B4h9ZTZM3zVabBa1bEXBNjyYnh3PS9KOXD6_vnNhfwEi_f982fSDdft4ZS8Z-qJzLEtbPVbdRtWPrF5rW9EybU3rz3QR_uEmMaJu-sKoao5ZpkqHKyXeYFiNg" alt="">
+  <header class="py-5 bg-image-full" style="background-image: url('contents/img/Promo_one.jpg');">
+    <img class="img-fluid d-block mx-auto" src="contents/img/Logo.png" alt="">
   </header>
 
   <!-- Content section -->
@@ -73,14 +76,12 @@
       <p class="lead">Текст.</p>
       <p>Абзац.</p>
       <!---->
-      <div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">
-        <a th:href="@{/somelink}">ADMIN LINK</a>
-      </div>
+
     </div>
   </section>
 
   <!-- Image Section - set the background image for the header in the line below -->
-  <section class="py-5 bg-image-full" style="background-image: url('http://sf.co.ua/15/10/wallpaper-1186f7.jpg'); ">
+  <section class="py-5 bg-image-full" style="background-image: url('contents/img/Promo_two.jpg'); ">
     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
     <div style="height: 200px;"></div>
   </section>
