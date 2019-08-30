@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface DateRepository extends CrudRepository<Date, Long> {
-    ArrayList<Date> findAllByDateOfAppointmentAndCusername(String dateOf,String cusername);
     ArrayList<Date> findAllByDateOfAppointment(String dateof);
 
     ArrayList<Date> findAllByDateOfAppointmentAndSusernameOrderByIndexInDay(String dateOf,String susername);
@@ -21,6 +20,8 @@ public interface DateRepository extends CrudRepository<Date, Long> {
             (String dateOfAppointment, Integer indexInDay, String susername, String cusernameString);
 
     boolean existsByDateOfAppointmentAndIndexInDayAndSusername(String date, Integer index, String susername);
+
+    boolean existsByDateOfAppointmentAndCusernameAndSusername(String date, String cusername, String susername);
 
     @Transactional
     void deleteByDateOfAppointmentAndSusername(String dateof,String susername);

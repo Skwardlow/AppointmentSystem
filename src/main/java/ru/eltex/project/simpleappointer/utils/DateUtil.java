@@ -59,8 +59,12 @@ public class DateUtil {
         dateRepository.deleteById(id);
     }
 
-    public void writeData(String date, Integer dayIndex,String susername, String cusername){
+    public boolean writeData(String date, Integer dayIndex,String susername, String cusername){
+        if (!dateRepository.existsByDateOfAppointmentAndCusernameAndSusername(date,cusername,susername)) {
         dateRepository.save(new Date(date,dayIndex,susername,cusername));
+        return  true;
+        }
+        return false;
     }
 
 
