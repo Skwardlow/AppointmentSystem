@@ -1,10 +1,9 @@
-package ru.eltex.project.simpleappointer.utils;
+package ru.eltex.project.simpleappointer.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.InviteRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Invite;
@@ -13,30 +12,59 @@ import ru.eltex.project.simpleappointer.entities.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-@Component
-@Transactional
-public class AdminUtils {
+/**
+ * Admin service class
+ * @author skwardlow
+ * @version 1.0
+ * @see Service
+ */
+@Service
+public class AdminService {
+    /**
+     * Dao user repository
+     */
     @Autowired
     UserRepository userRepository;
+    /**
+     * dao invite repository
+     */
     @Autowired
     InviteRepository inviteRepository;
 
+    /**
+     * Deleting user method
+     * @param username is field username for searching User object
+     * @see User
+     */
     public void deleteByUsername(String username){
         userRepository.deleteByUsername(username);
     }
 
+    /**
+     * Resetting invites method. Deleting all invites in db
+     */
     public void resetInvites(){
         inviteRepository.deleteAll();
     }
 
+    /**
+     * Method for creating new invite
+     * @param inviteName identify for new invite
+     * @see Invite
+     */
     public void inviteCreate(String inviteName){
         Invite invite = new Invite();
         invite.setIdentify(inviteName);
         inviteRepository.save(invite);
     }
 
-    public String findAllUsers() throws JsonProcessingException {
+    /**
+     * Searching for Specialist method.
+     * @return json formed user objects
+     * @throws JsonProcessingException
+     * @see User
+     */
+    public String findAllSpecialists() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<User> users = new ArrayList<>();
         userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
