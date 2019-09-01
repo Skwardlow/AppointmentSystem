@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -35,13 +35,6 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" href="#">Контакты</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">О нас</a>
-          </li>-->
-
           <li class="nav-item">
             <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/login">Вход</a>
           </li>
@@ -49,16 +42,16 @@
             <a class="nav-link" th:unless="${#httpServletRequest.remoteUser}" href="/registration">Регистрация</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/specialist">Мое рассписание</a>
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/specialist">Мое расписание</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/client">Записатся</a>
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/client">Записаться</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:inline="text" id = "userLogin">[[${#httpServletRequest.remoteUser}]]</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">Log Out</a>
+            <a class="nav-link" th:if="${#httpServletRequest.remoteUser}" href="/logout">Выйти</a>
           </li>
 
         </ul>
