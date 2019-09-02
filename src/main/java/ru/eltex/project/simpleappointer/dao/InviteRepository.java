@@ -25,6 +25,7 @@ public interface InviteRepository extends CrudRepository<Invite,Long> {
     /**
      * Deleting method where Invite finding by:
      * @param identify generated identify field in Invite object
+     * @see Transactional
      */
     @Transactional
     void deleteByIdentify(String identify);

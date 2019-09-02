@@ -6,9 +6,22 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
+/**
+ * Splitting url util, created for working with URL post requests
+ * @author Aaaaa988
+ * @version 1.0
+ * @see Component
+ */
 @Component
 public class SplitURL {
     private static final Integer EXCLUDING_INDEX = 1;
+
+    /**
+     * Splitting url method
+     * @param urlencoded encoded url
+     * @return Arraylist what url contains
+     * @throws UnsupportedEncodingException
+     */
     public ArrayList<String> split(String urlencoded) throws UnsupportedEncodingException {
         ArrayList<String> Result = new ArrayList<>();
         String urldecoded = URLDecoder.decode(urlencoded, "UTF-8");

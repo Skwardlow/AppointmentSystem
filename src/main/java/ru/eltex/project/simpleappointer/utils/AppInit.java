@@ -16,11 +16,27 @@ import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.Properties;
 
+/**
+ * App initialisation class, imports current template and set up a admin password
+ * @author skwardlow
+ * @version 1.0
+ * @see Component
+ * @see org.springframework.boot.CommandLineRunner
+ */
 @Component
 public class AppInit implements CommandLineRunner {
+    /**
+     * Wires user repository for creating new administrator
+     */
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * App init method, creates new admin account if previous expired or not exist
+     * Downloads a images for template creating (currently disabled)
+     * @param args automatically generated
+     * @throws Exception
+     */
     @Override
     public void run(String... args) throws Exception {
         InputStream input = new FileInputStream("src/main/resources/template.properties");
