@@ -71,7 +71,7 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
-        log.info("Specialist "+user.getUsername()+" "+user.getEmail()+" registered");
+        log.info("Client "+user.getUsername()+" "+user.getEmail()+" registered");
         return 0;
     }
 

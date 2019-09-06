@@ -61,7 +61,7 @@ public class AdminService {
         invite.setIdentify(inviteName);
         inviteRepository.save(invite);
         log.info("Creating new invite");
-        log.debug("Creating invite" + inviteName);
+        log.debug("Creating invite " + inviteName);
     }
 
     /**
@@ -73,9 +73,14 @@ public class AdminService {
     public String findAllSpecialists() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<User> users = new ArrayList<>();
+        ArrayList<User> usersREADY = new ArrayList<>();
         userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
+        for (User user:users) {
+            user.setPassword(null);
+            usersREADY.add(user);
+        }
         log.info("Searching for all specialists");
-        log.debug("Searching for specialists return: " + mapper.writeValueAsString(users));
-        return mapper.writeValueAsString(users);
+        log.debug("Searching for specialists return: " + mapper.writeValueAsString(usersREADY));
+        return mapper.writeValueAsString(usersREADY);
     }
 }

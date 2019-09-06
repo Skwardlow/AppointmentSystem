@@ -57,10 +57,6 @@ public class User implements UserDetails {
      * */
     private boolean active;
     /**
-     * User address field
-     */
-    private String address;
-    /**
      * User role field for using in authorities in Spring security
      * creates and wires with User_role field.
      * user identifies by user_id field in table
