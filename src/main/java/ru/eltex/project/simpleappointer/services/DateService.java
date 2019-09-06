@@ -8,6 +8,7 @@ import ru.eltex.project.simpleappointer.dao.DateRepository;
 import ru.eltex.project.simpleappointer.entities.Date;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Date service class
@@ -44,7 +45,7 @@ public class DateService {
      * @return json formed objects with appointments formed by date object
      * @throws JsonProcessingException
      */
-    public String returnAppointmentsUser(String date, String susername) throws JsonProcessingException {
+    public String returnAppointmentsUser(String date, String susername, String authname) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Date> dates = new ArrayList<>();
         Integer index = 8;
@@ -52,6 +53,11 @@ public class DateService {
             if(dateRepository.existsByDateOfAppointmentAndIndexInDayAndSusername(date,i,susername)){
                 dates.add(dateRepository.findByDateOfAppointmentAndSusernameAndIndexInDayOrderByIndexInDay
                         (date,susername,i));
+                if(Objects.equals(dates.get(i).getCusername(), authname)){
+                    dates.get(i).setCusername("Вы заняли этот прием");
+                }else{
+                    dates.get(i).setCusername("Занято");
+                }
             }
             else dates.add(new Date(null,i,null,null))  ;
         }

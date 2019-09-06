@@ -75,8 +75,9 @@ public class UserREST {
     @RequestMapping(value ="/get_dayclient",produces = MediaType.APPLICATION_JSON_VALUE)
     public String get_dayclient(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
         ArrayList<String> req = splitURL.split(object);
-        System.out.println(dateService.returnAppointmentsUser(req.get(1),req.get(0)));
-        return dateService.returnAppointmentsUser(req.get(1),req.get(0));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        return dateService.returnAppointmentsUser(req.get(1),req.get(0), name);
     }
 
     /**
