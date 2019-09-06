@@ -36,7 +36,6 @@ public class SpecialistREST {
     public Integer clear_users(@RequestBody String object) throws UnsupportedEncodingException {
         ArrayList<String> req = splitURL.split(object);
         for(String i: req){
-            System.out.println(i);
             dateService.deleteData(Integer.valueOf(i));
         }
         return 0;
@@ -52,7 +51,6 @@ public class SpecialistREST {
     @RequestMapping(value ="/get_dayspec",produces = MediaType.APPLICATION_JSON_VALUE)
     public String users_get(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
         ArrayList<String> req = splitURL.split(object);
-        System.out.println(dateService.returnAppointmentsSpecialist(req.get(1),req.get(0)));
         return dateService.returnAppointmentsSpecialist(req.get(1),req.get(0));
     }
 
@@ -83,7 +81,6 @@ public class SpecialistREST {
         ArrayList<String> req = splitURL.split(object);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        System.out.println(dateService.returnAppointmentsSpecialist(req.get(0),name));
         return dateService.returnAppointmentsSpecialist(req.get(0),name);
     }
 }

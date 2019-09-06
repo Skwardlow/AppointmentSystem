@@ -90,7 +90,6 @@ public class AdminREST {
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        System.out.println(name);
         return 0;
     }
 

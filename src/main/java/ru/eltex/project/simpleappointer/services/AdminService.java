@@ -75,7 +75,7 @@ public class AdminService {
         ArrayList<User> users = new ArrayList<>();
         userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
         log.info("Searching for all specialists");
-        log.debug("Searching for specialists " + users.toString());
+        log.debug("Searching for specialists return: " + mapper.writeValueAsString(users));
         return mapper.writeValueAsString(users);
     }
 }

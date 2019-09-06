@@ -38,7 +38,8 @@ public class DateService {
         ArrayList<Date> dates = new ArrayList<>();
         dateRepository.findAllByDateOfAppointmentAndSusernameOrderByIndexInDay(date,susername).forEach(dates::add);
         log.info("Spec "+susername+" trying to find all appointments in day "+date);
-        log.debug("Spec "+susername+" trying to find all appointments in day "+date+" found " +dates.toString());
+        log.debug("Spec "+susername+" trying to find all appointments in day "+date+" return " +
+                objectMapper.writeValueAsString(dates));
         return objectMapper.writeValueAsString(dates);
     }
 
@@ -66,7 +67,8 @@ public class DateService {
             }
             else dates.add(new Date(null,i,null,null))  ;
         }
-        log.debug("User" + susername + " trying to find appointments of" +susername+ " in date "+date + " found "+dates.toString());
+        log.debug("User" + susername + " trying to find appointments of" +
+                susername+ " in date "+date + " return "+objectMapper.writeValueAsString(dates));
         return objectMapper.writeValueAsString(dates);
     }
 
