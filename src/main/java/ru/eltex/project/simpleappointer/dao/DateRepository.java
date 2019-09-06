@@ -68,4 +68,5 @@ public interface DateRepository extends CrudRepository<Date, Long> {
     @Transactional
     void deleteById(Integer id);
 
+    Date findById(Integer id);
 }

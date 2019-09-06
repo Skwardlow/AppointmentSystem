@@ -2,6 +2,7 @@ package ru.eltex.project.simpleappointer.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.InviteRepository;
@@ -18,6 +19,7 @@ import java.util.Collections;
  * @version 1.0
  * @see Service
  */
+@Slf4j
 @Service
 public class AdminService {
     /**
@@ -38,6 +40,7 @@ public class AdminService {
      */
     public void deleteByUsername(String username){
         userRepository.deleteByUsername(username);
+        log.warn("Deleting user" + username);
     }
 
     /**
@@ -45,6 +48,7 @@ public class AdminService {
      */
     public void resetInvites(){
         inviteRepository.deleteAll();
+        log.warn("Deleting all users (init by admin)");
     }
 
     /**
@@ -56,6 +60,8 @@ public class AdminService {
         Invite invite = new Invite();
         invite.setIdentify(inviteName);
         inviteRepository.save(invite);
+        log.info("Creating new invite");
+        log.debug("Creating invite" + inviteName);
     }
 
     /**
@@ -68,6 +74,8 @@ public class AdminService {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<User> users = new ArrayList<>();
         userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
+        log.info("Searching for all specialists");
+        log.debug("Searching for specialists " + users.toString());
         return mapper.writeValueAsString(users);
     }
 }

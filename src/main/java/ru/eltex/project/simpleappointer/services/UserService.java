@@ -1,5 +1,6 @@
 package ru.eltex.project.simpleappointer.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,7 @@ import java.util.List;
  * @see UserDetailsService
  */
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
     /**
      * Dao user repository
@@ -43,15 +45,19 @@ public class UserService implements UserDetailsService {
     @Transactional
     public byte regAddU(User user, String invite){
         if (userRepository.existsByEmail(user.getEmail())){
+            log.info("Tried reg with existing email "+user.getEmail());
             return 1;
         }
         if (userRepository.existsByUsername(user.getUsername())){
+            log.info("Tried reg with existing username "+user.getUsername());
             return 2;
         }
         if (userRepository.existsByUsernameAndEmail(user.getUsername(),user.getEmail())){
+            log.info("Tried reg with existing username "+ user.getUsername()+" and email "+user.getEmail());
             return 3;
         }
         if((!inviteRepository.existsByIdentify(invite))&&(invite!=null)){
+            log.info("User "+user.getUsername()+" tried broken invite "+invite);
             return 4;
         }
         if((inviteRepository.existsByIdentify(invite))&&(invite!=null)){
@@ -59,11 +65,13 @@ public class UserService implements UserDetailsService {
             userRepository.save(user);
             inviteRepository.deleteByIdentify(invite);
             user.setActive(true);
+            log.info("Specialist "+user.getUsername()+" "+user.getEmail()+" registered using" + invite);
             return 0;
         }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
+        log.info("Specialist "+user.getUsername()+" "+user.getEmail()+" registered");
         return 0;
     }
 
@@ -75,6 +83,8 @@ public class UserService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("Trying to find "+ username+ "in DB");
         return userRepository.findByUsername(username);
+
     }
 }

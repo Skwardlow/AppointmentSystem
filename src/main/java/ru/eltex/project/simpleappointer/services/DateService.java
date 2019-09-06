@@ -2,6 +2,7 @@ package ru.eltex.project.simpleappointer.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.DateRepository;
@@ -16,6 +17,7 @@ import java.util.Objects;
  * @version 1.0
  * @see Service
  */
+@Slf4j
 @Service
 public class DateService {
     /**
@@ -35,6 +37,8 @@ public class DateService {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Date> dates = new ArrayList<>();
         dateRepository.findAllByDateOfAppointmentAndSusernameOrderByIndexInDay(date,susername).forEach(dates::add);
+        log.info("Spec "+susername+" trying to find all appointments in day "+date);
+        log.debug("Spec "+susername+" trying to find all appointments in day "+date+" found " +dates.toString());
         return objectMapper.writeValueAsString(dates);
     }
 
@@ -48,6 +52,7 @@ public class DateService {
     public String returnAppointmentsUser(String date, String susername, String authname) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Date> dates = new ArrayList<>();
+        log.info("User" + susername + " trying to find appointments of" +susername+ " in date "+date);
         Integer index = 8;
         for (int i = 0; i<index;i++){
             if(dateRepository.existsByDateOfAppointmentAndIndexInDayAndSusername(date,i,susername)){
@@ -61,6 +66,7 @@ public class DateService {
             }
             else dates.add(new Date(null,i,null,null))  ;
         }
+        log.debug("User" + susername + " trying to find appointments of" +susername+ " in date "+date + " found "+dates.toString());
         return objectMapper.writeValueAsString(dates);
     }
 
@@ -71,6 +77,7 @@ public class DateService {
      */
     public void dayWithAppointmentsDelete(String date, String susername){
         dateRepository.deleteByDateOfAppointmentAndSusername(date,susername);
+        log.warn("Spec "+susername+" deleting appointments in day " +date);
     }
 
     /**
@@ -78,6 +85,7 @@ public class DateService {
      * @param id is Appointment id for deleting from DB
      */
     public void deleteData(Integer id){
+        log.warn("Appointment "+ dateRepository.findById(id).toString() + " deleted ");
         dateRepository.deleteById(id);
     }
 
@@ -93,8 +101,10 @@ public class DateService {
     public boolean writeData(String date, Integer dayIndex,String susername, String cusername){
         if (!dateRepository.existsByDateOfAppointmentAndCusernameAndSusername(date,cusername,susername)) {
             dateRepository.save(new Date(date,dayIndex,susername,cusername));
+            log.info("Client "+cusername+" registered to "+susername+" on "+date+" at ind "+dayIndex);
             return  true;
         }
+        log.info("Client "+cusername+" failed reg to "+susername+" on "+date+" ind" +dayIndex);
         return false;
     }
 }
