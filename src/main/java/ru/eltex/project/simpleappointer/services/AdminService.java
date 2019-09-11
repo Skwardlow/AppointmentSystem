@@ -13,8 +13,10 @@ import ru.eltex.project.simpleappointer.entities.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
  * Admin service class
+ *
  * @author skwardlow
  * @version 1.0
  * @see Service
@@ -35,10 +37,11 @@ public class AdminService {
 
     /**
      * Deleting user method
+     *
      * @param username is field username for searching User object
      * @see User
      */
-    public void deleteByUsername(String username){
+    public void deleteByUsername(String username) {
         userRepository.deleteByUsername(username);
         log.warn("Deleting user" + username);
     }
@@ -46,17 +49,18 @@ public class AdminService {
     /**
      * Resetting invites method. Deleting all invites in db
      */
-    public void resetInvites(){
+    public void resetInvites() {
         inviteRepository.deleteAll();
         log.warn("Deleting all users (init by admin)");
     }
 
     /**
      * Method for creating new invite
+     *
      * @param inviteName identify for new invite
      * @see Invite
      */
-    public void inviteCreate(String inviteName){
+    public void inviteCreate(String inviteName) {
         Invite invite = new Invite();
         invite.setIdentify(inviteName);
         inviteRepository.save(invite);
@@ -66,6 +70,7 @@ public class AdminService {
 
     /**
      * Searching for Specialist method.
+     *
      * @return json formed user objects
      * @throws JsonProcessingException
      * @see User
@@ -75,7 +80,7 @@ public class AdminService {
         ArrayList<User> users = new ArrayList<>();
         ArrayList<User> usersREADY = new ArrayList<>();
         userRepository.findAllByRoles(Collections.singleton(Role.SPECIALIST)).forEach(users::add);
-        for (User user:users) {
+        for (User user : users) {
             user.setPassword(null);
             usersREADY.add(user);
         }
