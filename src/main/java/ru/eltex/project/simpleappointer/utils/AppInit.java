@@ -18,6 +18,7 @@ import java.util.Properties;
 
 /**
  * App initialisation class, imports current template and set up a admin password
+ *
  * @author skwardlow
  * @version 1.0
  * @see Component
@@ -34,6 +35,7 @@ public class AppInit implements CommandLineRunner {
     /**
      * App init method, creates new admin account if previous expired or not exist
      * Downloads a images for template creating (currently disabled)
+     *
      * @param args automatically generated
      * @throws Exception
      */
@@ -62,8 +64,7 @@ public class AppInit implements CommandLineRunner {
         user.setActive(true);
         if (!userRepository.existsByUsername("admin")) {
             userRepository.save(user);
-        }
-        else {
+        } else {
             userRepository.deleteByUsername("admin");
             userRepository.save(user);
         }
