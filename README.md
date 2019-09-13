@@ -1,6 +1,6 @@
 Eltex Summer School final project
 
-[Deployed version (working unstable because of host)](extraordinaryllc.info)
+[Deployed version (working unstable because of host)](http://extraordinaryllc.info)
 
 [Kanban Progress](https://trello.com/b/Uv2pvQJi/extraordinary-llc)
 
