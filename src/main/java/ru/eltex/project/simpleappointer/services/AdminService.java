@@ -51,7 +51,7 @@ public class AdminService {
      */
     public void resetInvites() {
         inviteRepository.deleteAll();
-        log.warn("Deleting all users (init by admin)");
+        log.warn("Deleting all invites (init by admin)");
     }
 
     /**
