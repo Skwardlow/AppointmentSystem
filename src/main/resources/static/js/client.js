@@ -70,7 +70,7 @@ function Change(event) {
 
 $(function() {
     $('#writeOn').click(function() {
-        if(confirm("Записатся на прием?")){
+        if(confirm("Записаться на прием?")){
             var clearUsers = {};
             clearUsers.spec = $('#specList').val();
             clearUsers.date = $('#datepicker').val();

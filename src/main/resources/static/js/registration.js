@@ -59,10 +59,9 @@ $(function() {
                         password: password
                     }
                 }).done(function (msg) {
-                    alert(msg);
                     if (msg == 0) {
                         $('#user-alert').hide();
-                        alert("Вы успешно зарегестрировались, далее вы попадете на главную страницу");
+                        alert("Вы успешно зарегистрировались, далее вы попадете на главную страницу");
                         document.location.replace("/");
                     } else if (msg == 1) {
                         $('#email-alert').show();
@@ -102,7 +101,7 @@ $(function() {
                 }).done(function (msg) {
                     if (msg == 0) {
                         $('#user-alert').hide();
-                        alert("Вы успешно зарегестрировались, далее вы попадете на главную страницу");
+                        alert("Вы успешно зарегистрировались, далее вы попадете на главную страницу");
                         document.location.replace("/");
                     } else if (msg == 1) {
                         $('#email-alert').show();
