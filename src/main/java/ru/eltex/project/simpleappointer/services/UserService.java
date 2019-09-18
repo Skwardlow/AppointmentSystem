@@ -36,6 +36,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private InviteRepository inviteRepository;
 
+    /**
+     * Creates password encoding object for encoding passwords for users ¯\_(ツ)_/¯
+     */
     private Md4PasswordEncoder passwordEncoder = new Md4PasswordEncoder();
 
     /**

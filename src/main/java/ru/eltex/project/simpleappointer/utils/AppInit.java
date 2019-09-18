@@ -33,6 +33,9 @@ public class AppInit implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Creates password encoding object for admin password
+     */
     Md4PasswordEncoder md4PasswordEncoder = new Md4PasswordEncoder();
 
     /**

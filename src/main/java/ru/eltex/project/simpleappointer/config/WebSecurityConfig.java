@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.Md4PasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-
 import javax.sql.DataSource;
 
 /**
@@ -35,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    /**
+     * Creating passwordencoder object for Security authentication
+     */
     Md4PasswordEncoder md4PasswordEncoder = new Md4PasswordEncoder();
 
     /**
@@ -65,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * This method configuring default datasource
      * no params expected. running automatically
+     * uses md4passwordencoder for authentication
      *
      * @param auth automatically generated
      * @throws Exception
