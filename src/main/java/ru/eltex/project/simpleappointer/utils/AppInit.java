@@ -2,6 +2,7 @@ package ru.eltex.project.simpleappointer.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.Md4PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
 import ru.eltex.project.simpleappointer.entities.Role;
@@ -32,6 +33,8 @@ public class AppInit implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
+    Md4PasswordEncoder md4PasswordEncoder = new Md4PasswordEncoder();
+
     /**
      * App init method, creates new admin account if previous expired or not exist
      * Downloads a images for template creating (currently disabled)
@@ -59,7 +62,8 @@ public class AppInit implements CommandLineRunner {
 //        in = new URL(prop.getProperty("right-column")).openStream();
 //        Files.copy(in, Paths.get("src/main/resources/static/contents/img/Promo_right_col.jpg"), StandardCopyOption.REPLACE_EXISTING);
         User user = new User
-                ("admin", "admin", "admin", "admin", prop.getProperty("admin-password"));
+                ("admin", "admin", "admin", "admin",
+                        md4PasswordEncoder.encode(prop.getProperty("admin-password")));
         user.setRoles(Collections.singleton(Role.ADMIN));
         user.setActive(true);
         if (!userRepository.existsByUsername("admin")) {

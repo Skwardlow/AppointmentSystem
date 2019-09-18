@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.Md4PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.eltex.project.simpleappointer.dao.InviteRepository;
 import ru.eltex.project.simpleappointer.dao.UserRepository;
@@ -35,6 +36,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private InviteRepository inviteRepository;
 
+    private Md4PasswordEncoder passwordEncoder = new Md4PasswordEncoder();
+
     /**
      * Registration user method
      *
@@ -64,6 +67,7 @@ public class UserService implements UserDetailsService {
         }
         if ((inviteRepository.existsByIdentify(invite)) && (invite != null)) {
             user.setRoles(Collections.singleton(Role.SPECIALIST));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             inviteRepository.deleteByIdentify(invite);
             user.setActive(true);
@@ -72,6 +76,7 @@ public class UserService implements UserDetailsService {
         }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         log.info("Client " + user.getUsername() + " " + user.getEmail() + " registered");
         return 0;
