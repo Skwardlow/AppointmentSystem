@@ -52,7 +52,7 @@ public class UserController {
      */
     @RequestMapping(value = "/reg_user", produces = MediaType.APPLICATION_JSON_VALUE)
     public Byte reg_user(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         if (req.size() == 7) {
             User user = new User(req.get(0) + " " + req.get(1) + " " + req.get(2), req.get(3), req.get(3), req.get(4), req.get(6));
             byte answer = userService.regAddU(user, req.get(5));
@@ -75,7 +75,7 @@ public class UserController {
      */
     @RequestMapping(value = "/get_dayclient", produces = MediaType.APPLICATION_JSON_VALUE)
     public String get_dayclient(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         return dateService.returnAppointmentsUser(req.get(1), req.get(0), name);
@@ -90,7 +90,7 @@ public class UserController {
      */
     @RequestMapping(value = "/write_on", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer write_on(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         dateService.writeData(req.get(1), Integer.valueOf(req.get(2)), req.get(0), name);

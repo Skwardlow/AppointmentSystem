@@ -35,12 +35,6 @@ public class AdminController {
     @Autowired
     DateService dateService;
     /**
-     * Wiring URL util for splitting incoming requests
-     */
-    @Autowired
-    SplitURL splitURL;
-
-    /**
      * Deleting specialist from DB method
      *
      * @param object url not splitted body, coming to spliturl util, contains username of spec
@@ -49,7 +43,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/delete_spec", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer delete_spec(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         adminService.deleteByUsername(req.get(0));
         return 0;
     }
@@ -63,7 +57,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/delete_day", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer delete_day(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         dateService.dayWithAppointmentsDelete(req.get(0), req.get(1));
         return 0;
     }
@@ -89,7 +83,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/invite_create", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer invite_create(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         for (String iteration : req) {
             adminService.inviteCreate(iteration);
         }

@@ -23,10 +23,11 @@ import java.util.ArrayList;
  */
 @RestController
 public class SpecialistController {
+    /**
+     * Wiring date service
+     */
     @Autowired
     DateService dateService;
-    @Autowired
-    SplitURL splitURL;
 
     /**
      * Clearing appointments(dates) in day method
@@ -37,7 +38,7 @@ public class SpecialistController {
      */
     @RequestMapping(value = "/clear_users", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer clear_users(@RequestBody String object) throws UnsupportedEncodingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         for (String i : req) {
             dateService.deleteData(Integer.valueOf(i));
         }
@@ -54,7 +55,7 @@ public class SpecialistController {
      */
     @RequestMapping(value = "/get_dayspec", produces = MediaType.APPLICATION_JSON_VALUE)
     public String users_get(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         return dateService.returnAppointmentsSpecialist(req.get(1), req.get(0));
     }
 
@@ -69,7 +70,7 @@ public class SpecialistController {
     public Integer delete_myDay(@RequestBody String object) throws UnsupportedEncodingException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         dateService.dayWithAppointmentsDelete(req.get(0), name);
         return 0;
     }
@@ -84,7 +85,7 @@ public class SpecialistController {
      */
     @RequestMapping(value = "/get_myDay", produces = MediaType.APPLICATION_JSON_VALUE)
     public String get_myDay(@RequestBody String object) throws UnsupportedEncodingException, JsonProcessingException {
-        ArrayList<String> req = splitURL.split(object);
+        ArrayList<String> req = SplitURL.split(object);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         return dateService.returnAppointmentsSpecialist(req.get(0), name);

@@ -26,7 +26,7 @@ public class SplitURL {
      * @return Arraylist what url contains
      * @throws UnsupportedEncodingException
      */
-    public ArrayList<String> split(String urlencoded) throws UnsupportedEncodingException {
+    public static ArrayList<String> split(String urlencoded) throws UnsupportedEncodingException {
         log.info("Got request " + urlencoded);
         ArrayList<String> Result = new ArrayList<>();
         String urldecoded = URLDecoder.decode(urlencoded, "UTF-8");
